@@ -233,6 +233,148 @@
         }
         .source-link:hover { color: var(--g-blue); }
 
+        /* PRICING CARD STYLES */
+        .pricing-card {
+            background: linear-gradient(145deg, rgba(32, 33, 36, 0.9), rgba(11, 12, 16, 0.95));
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .pricing-header h3 { font-size: 1.8rem; margin: 0 0 5px 0; color: #fff; }
+
+        .price-tag {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .old-price {
+            font-size: 1.2rem;
+            text-decoration: line-through;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .price-period { font-size: 1rem; color: var(--text-secondary); font-weight: 400; }
+
+        .promo-banner {
+            background: rgba(253, 214, 99, 0.15);
+            color: var(--g-yellow);
+            border: 1px solid rgba(253, 214, 99, 0.3);
+            padding: 12px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cost-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .breakdown-item {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .breakdown-item.highlight {
+            background: rgba(129, 201, 149, 0.1);
+            border-color: var(--g-green);
+        }
+
+        .breakdown-label { display: block; font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 8px; }
+        .breakdown-value { display: block; font-size: 1.4rem; font-weight: 700; color: #fff; }
+
+        /* VIDEO GRID STYLES */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 80px;
+        }
+
+        .tiktok-card {
+            display: block;
+            text-decoration: none;
+            background: var(--card-surface);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tiktok-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-color: rgba(255,255,255,0.3); }
+
+        .tiktok-preview {
+            aspect-ratio: 9/16;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255,255,255,0.8);
+            transition: transform 0.3s;
+        }
+        
+        .tiktok-card:hover .play-icon { transform: scale(1.1); background: rgba(255, 66, 100, 0.8); border-color: transparent; }
+
+        .tiktok-platform {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            background: #000;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .tiktok-info { padding: 16px; }
+        .tiktok-info h4 { margin: 0 0 5px 0; color: #fff; font-size: 1rem; }
+        .tiktok-info p { margin: 0; font-size: 0.85rem; color: var(--text-secondary); }
+
         /* Particle Canvas Background */
         #particle-canvas {
             position: fixed;
@@ -441,6 +583,131 @@
                 <h3>10% en Google Store</h3>
                 <p>Reembolso en crédito de la tienda por compras de dispositivos Pixel, Nest o accesorios. Ideal para actualizar el hardware de la familia.</p>
             </div>
+        </div>
+
+        <!-- PRICING SECTION -->
+        <h2 style="font-family: 'Google Sans'; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;" id="pricing">
+            <i data-lucide="credit-card" color="var(--g-yellow)"></i> Precios & Oferta
+        </h2>
+        
+        <div class="pricing-card">
+             <div class="pricing-header">
+                <div>
+                     <h3>Google AI Pro (Oferta Especial)</h3>
+                     <p style="color:var(--text-secondary)">Acceso total para toda familia</p>
+                </div>
+                <!-- Updated Price Tag -->
+                <div class="price-tag">
+                    <span class="old-price">395 MXN</span>
+                    <span style="color: var(--g-green);">39 MXN</span>
+                    <span class="price-period">/mes</span>
+                </div>
+                <div style="width: 100%; margin-top: -10px; margin-bottom: 20px;">
+                    <span style="font-size: 0.9rem; color: var(--g-green); font-weight: 600; display: block; text-align: right;">durante 3 meses</span>
+                </div>
+             </div>
+             
+             <div class="promo-banner">
+                 <i data-lucide="zap" size="16"></i> AHORRA 90% LOS PRIMEROS 3 MESES
+             </div>
+
+             <div class="cost-breakdown">
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Costo Mensual (Total)</span>
+                    <span class="breakdown-value">39 MXN</span>
+                </div>
+                <div class="breakdown-item highlight">
+                    <span class="breakdown-label">Costo por Familiar (4 Personas)</span>
+                    <span class="breakdown-value" style="color: var(--g-green); font-size: 1.2rem;">9.75 MXN/mes</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="breakdown-label">Costo por Familiar (6 Personas)</span>
+                    <span class="breakdown-value">6.50 MXN/mes</span>
+                </div>
+             </div>
+
+             <!-- Regular Price Info -->
+             <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <h4 style="color: var(--text-secondary); margin-bottom: 20px; font-weight: 500;">
+                    <i data-lucide="calendar-clock" size="16" style="vertical-align: middle; margin-right: 8px;"></i>
+                    A partir del 4° Mes (Precio Regular)
+                </h4>
+                <div class="cost-breakdown" style="opacity: 0.8;">
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Precio Regular Total</span>
+                        <span class="breakdown-value" style="font-size: 1.1rem;">395 MXN/mes</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Por Familiar (4 Personas)</span>
+                        <span class="breakdown-value" style="font-size: 1.1rem;">98.75 MXN</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Por Familiar (6 Personas)</span>
+                        <span class="breakdown-value" style="font-size: 1.1rem;">65.83 MXN</span>
+                    </div>
+                </div>
+             </div>
+
+             <p style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: var(--text-secondary);">
+                 *El precio se renueva automáticamente a 395 MXN/mes. Puedes cancelar en cualquier momento antes del 4° mes.
+             </p>
+        </div>
+
+
+        <!-- TIKTOK VIDEO SECTION -->
+        <!-- Updated with generated thumbnails -->
+        <h2 style="font-family: 'Google Sans'; margin: 80px 0 30px; display: flex; align-items: center; gap: 10px;" id="videos">
+            <i data-lucide="play-circle" color="var(--text-primary)"></i> Videos Destacados
+        </h2>
+        
+        <div class="video-grid">
+            <!-- Video 1: Nano Banana -->
+            <a href="https://vt.tiktok.com/ZSasHreEU/" target="_blank" class="tiktok-card">
+                <div class="tiktok-preview" style="background-image: url('thumb_nano_banana_1770097634887.png'); background-size: cover; background-position: center;">
+                    <div class="play-icon"><i data-lucide="play" fill="white"></i></div>
+                    <span class="tiktok-platform">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                    <h4>Nano Banana vs Pro</h4>
+                    <p>Comparativa real de generación de imágenes.</p>
+                </div>
+            </a>
+
+            <!-- Video 2: Gemini Demo -->
+            <a href="https://vt.tiktok.com/ZSasHRJCx/" target="_blank" class="tiktok-card">
+                <div class="tiktok-preview" style="background-image: url('thumb_gemini_demo_1770097651114.png'); background-size: cover; background-position: center;">
+                    <div class="play-icon"><i data-lucide="play" fill="white"></i></div>
+                    <span class="tiktok-platform">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                    <h4>Gemini 3 Pro Demo</h4>
+                    <p>Prueba de rendimiento en tiempo real.</p>
+                </div>
+            </a>
+
+            <!-- Video 3: Antigravity -->
+             <a href="https://vt.tiktok.com/ZSasHBqrt/" target="_blank" class="tiktok-card">
+                <div class="tiktok-preview" style="background-image: url('thumb_antigravity_ide_1770097667773.png'); background-size: cover; background-position: center;">
+                    <div class="play-icon"><i data-lucide="play" fill="white"></i></div>
+                    <span class="tiktok-platform">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                    <h4>Antigravity Setup</h4>
+                    <p>Configurando el IDE para toda la familia.</p>
+                </div>
+            </a>
+
+            <!-- Video 4: Fitbit -->
+             <a href="https://vt.tiktok.com/ZSasHmHT2/" target="_blank" class="tiktok-card">
+                <div class="tiktok-preview" style="background-image: url('thumb_fitbit_home_1770097682353.png'); background-size: cover; background-position: center;">
+                    <div class="play-icon"><i data-lucide="play" fill="white"></i></div>
+                    <span class="tiktok-platform">TikTok</span>
+                </div>
+                <div class="tiktok-info">
+                    <h4>Fitbit & Home Benefits</h4>
+                    <p>Lo nuevo en salud y seguridad.</p>
+                </div>
+            </a>
         </div>
 
         <!-- FOOTER / REFERENCES -->
