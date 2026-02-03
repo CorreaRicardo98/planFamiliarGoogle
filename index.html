@@ -396,8 +396,24 @@
 
         /* ... existing feature-card styles ... */
 
-        /* RESPONSIVE DESIGN FIXES */
         @media (max-width: 1024px) {
+            /* FORCE VERTICAL STACKING (FLEX COLUMN) - NUCLEAR OPTION */
+            .benefits-grid, 
+            .video-grid, 
+            .cost-breakdown {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 30px !important;
+            }
+
+            .feature-card, 
+            .tiktok-card, 
+            .breakdown-item {
+                width: 100% !important;
+                box-sizing: border-box !important;
+                min-width: 0 !important; /* Prevent overflow */
+            }
+
             header { padding: 60px 0 40px; }
             h1 { font-size: 2.5rem; word-wrap: break-word; }
             
@@ -428,10 +444,6 @@
             
             .pricing-header { flex-direction: column; text-align: center; }
             .price-tag { justify-content: center; flex-wrap: wrap; }
-            
-            .cost-breakdown {
-                grid-template-columns: 1fr;
-            }
             
             .footer-info {
                 flex-direction: column;
