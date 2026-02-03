@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google AI Pro - Plan Familiar</title>
+    <!-- Google Fonts: Inter for UI, JetBrains Mono for Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            /* Google Brand Colors */
+            --g-blue: #8AB4F8;
+            --g-red: #F28B82;
+            --g-yellow: #FDD663;
+            --g-green: #81C995;
+            
+            /* Antigravity / Gemini Gradient */
+            --gemini-gradient: linear-gradient(90deg, #4b90ff, #ff5546, #4b90ff); /* Animated flow */
+            --antigravity-dark: #0b0c10;
+            --antigravity-panel: #161a22;
+            --antigravity-border: #30363d;
+            
+            /* UI colors */
+            --bg-body: #050505;
+            --text-primary: #e3e3e3;
+            --text-secondary: #9aa0a6;
+            --card-surface: rgba(32, 33, 36, 0.6);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            margin: 0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(66, 133, 244, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(234, 67, 53, 0.05) 0%, transparent 50%);
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* HEADER ANIMATION */
+        header {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            color: var(--g-yellow);
+            font-weight: 500;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        h1 {
+            font-family: 'Google Sans', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            margin: 0;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #8AB4F8 0%, #F28B82 50%, #FDD663 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+        }
+
+        /* ANTIGRAVITY SECTION styling specific */
+        .antigravity-code-badge {
+            font-family: 'JetBrains Mono', monospace;
+            color: #89b4fa;
+            background: rgba(137, 180, 250, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* CARDS GRID */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .feature-card {
+            background: var(--card-surface);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        /* Google color bars on top of cards */
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--g-blue); /* Default */
+            opacity: 0.7;
+        }
+        
+        .card-blue::before { background: var(--g-blue); }
+        .card-red::before { background: var(--g-red); }
+        .card-yellow::before { background: var(--g-yellow); }
+        .card-green::before { background: var(--g-green); }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 1.5rem;
+            margin: 0 0 12px 0;
+            color: #fff;
+        }
+
+        .feature-card p {
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+            color: var(--text-secondary);
+            flex-grow: 1;
+        }
+
+        /* IDE MOCKUP for Antigravity */
+        .ide-mockup {
+            background: var(--antigravity-panel);
+            border: 1px solid var(--antigravity-border);
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #d1d5db;
+            margin-top: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .code-line { display: block; margin-bottom: 4px; }
+        .code-comment { color: #6e7681; font-style: italic; }
+        .code-keyword { color: #ff7b72; }
+        .code-string { color: #a5d6ff; }
+        .code-func { color: #d2a8ff; }
+
+        /* FAMILY SHARING CALLOUT */
+        .family-pill {
+            display: inline-block;
+            background: rgba(129, 201, 149, 0.15);
+            color: var(--g-green);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* RESPONSIVE FOOTER */
+        .footer-info {
+            border-top: 1px solid var(--card-border);
+            padding-top: 40px;
+            padding-bottom: 80px;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .footer-col { max-width: 400px; }
+        .footer-col h4 { color: #fff; margin-bottom: 16px; font-family: 'Google Sans'; }
+        .source-link { 
+            color: var(--text-secondary); 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .source-link:hover { color: var(--g-blue); }
+
+        /* Particle Canvas Background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind everything */
+            pointer-events: none;
+        }
+
+        /* Floating Nav for "Google" feel */
+        .floating-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(22, 23, 26, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 10px 30px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.1);
+            z-index: 1000;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-item:hover { color: #fff; }
+        .nav-item.active { color: var(--g-blue); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Floating Navigation -->
+    <nav class="floating-nav">
+        <a href="#overview" class="nav-item active">General</a>
+        <a href="#ai-core" class="nav-item">IA Core</a>
+        <a href="#creative" class="nav-item">Creatividad</a>
+        <a href="#dev" class="nav-item">Antigravity</a>
+        <a href="#lifestyle" class="nav-item">Estilo de Vida</a>
+    </nav>
+
+    <div class="container">
+        
+        <header id="overview">
+            <div class="logo-badge">
+                <i data-lucide="sparkles" size="14"></i>
+                <span>Nuevo Plan 2026</span>
+            </div>
+            <h1>
+                Beneficios Familiares<br>
+                <span class="gradient-text">Google AI Pro</span>
+            </h1>
+            <p style="max-width: 600px; margin: 30px auto; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6;">
+                Un plan unificado para hasta <strong>6 miembros</strong>. Potencia tus proyectos con Gemini 3 Pro, protege tu hogar con Google Home Premium y mantén a tu familia saludable con Fitbit Premium.
+            </p>
+        </header>
+
+        <!-- GRID 1: CORE AI & STORAGE -->
+        <h2 style="font-family: 'Google Sans'; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
+            <i data-lucide="cpu" color="var(--g-blue)"></i> Potencia Principal
+        </h2>
+        <div class="benefits-grid" id="ai-core">
+            
+            <!-- Gemini 3 Pro -->
+            <div class="feature-card card-blue">
+                <span class="family-pill">Acceso Individual x6</span>
+                <div class="icon-box" style="color: var(--g-blue);">
+                    <i data-lucide="brain-circuit"></i>
+                </div>
+                <h3>Gemini 3 Pro</h3>
+                <p>El modelo más capaz de Google. Cada miembro de la familia tiene su propia instancia privada con capacidad de <strong>2 Milliones de tokens</strong>. Perfecto para analizar documentos largos o chatear con complejidad nativa.</p>
+                <div style="font-size: 0.8rem; color: var(--g-blue); margin-top: auto;">
+                    <i data-lucide="check" size="12"></i> Incluye Deep Research
+                </div>
+            </div>
+
+            <!-- Workspace Integration -->
+            <div class="feature-card card-green">
+                <span class="family-pill">Productividad Compartida</span>
+                <div class="icon-box" style="color: var(--g-green);">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <h3>Gemini en Workspace</h3>
+                <p>Integración total en Docs, Gmail, Slides y Sheets. Tu pareja puede usarlo para hojas de cálculo de presupuestos, y tus hijos para esquematizar ensayos escolares directamente en Docs.</p>
+                <div style="font-size: 0.8rem; color: var(--g-green); margin-top: auto;">
+                    <i data-lucide="check" size="12"></i> "Help me write" en Gmail
+                </div>
+            </div>
+
+            <!-- Storage -->
+            <div class="feature-card card-yellow">
+                <span class="family-pill">Pool Compartido</span>
+                <div class="icon-box" style="color: var(--g-yellow);">
+                    <i data-lucide="hard-drive"></i>
+                </div>
+                <h3>2 TB de Almacenamiento</h3>
+                <p>Espacio masivo en la nube compartido entre todos. No te preocupes por la privacidad: los archivos de Photos y Drive son <strong>invisibles</strong> para otros miembros a menos que se compartan explícitamente.</p>
+            </div>
+        </div>
+
+
+        <!-- GRID 2: CREATIVE & ANTIGRAVITY -->
+        <h2 style="font-family: 'Google Sans'; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;" id="creative">
+            <i data-lucide="palette" color="var(--g-red)"></i> Estudio Creativo & Desarrollo
+        </h2>
+        <div class="benefits-grid">
+
+            <!-- CREATIVE TOOLS -->
+            <div class="feature-card card-red">
+                <span class="family-pill">Multimedia</span>
+                <div class="icon-box" style="color: var(--g-red);">
+                    <i data-lucide="clapperboard"></i>
+                </div>
+                <h3>Flow & Veo 3</h3>
+                <p>El estudio de cine en casa. Usa <strong>Flow</strong> para la edición de video asistida por IA y <strong>Veo 3</strong> para generar clips 4K desde texto.</p>
+                <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0;">
+                    <li><strong>Whisk:</strong> Transforma fotos en videos vivos.</li>
+                    <li><strong>200 Créditos Mensuales:</strong> Para generación de video de alta fidelidad.</li>
+                </ul>
+            </div>
+
+            <div class="feature-card card-red">
+                <span class="family-pill">Imagen</span>
+                <div class="icon-box" style="color: var(--g-red);">
+                    <i data-lucide="image"></i>
+                </div>
+                <h3>Nano Banana Pro</h3>
+                <p>Generación de imágenes fotorrealistas con simulación de física de luz. Ideal para proyectos escolares, presentaciones o arte digital.</p>
+                <div style="font-size: 0.8rem; color: var(--g-red); margin-top: auto;">
+                    <i data-lucide="check" size="12"></i> Editor Mágico Ilimitado en Photos
+                </div>
+            </div>
+
+            <!-- ANTIGRAVITY IDE SPECIFIC -->
+            <div class="feature-card card-blue" id="dev" style="grid-column: span 2; background: linear-gradient(180deg, rgba(32,33,36,0.8), rgba(11,12,16,0.95)); border-color: #30363d;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <span class="antigravity-code-badge">PLAN AI PRO EXCLUSIVE</span>
+                        <h3 style="margin-top: 15px; color: #8AB4F8;">Google Antigravity IDE</h3>
+                        <p>Entorno de desarrollo agéntico completo. Ideal para estudiantes de CS o hobbyists en la familia.</p>
+                        <p style="font-size: 0.9rem; color: #8b949e;">Cada miembro obtiene su propia cuota de agentes autónomos para construir, depurar y desplegar software.</p>
+                    </div>
+                </div>
+
+                <!-- Live Code Mockup Animation -->
+                <div class="ide-mockup">
+                    <div style="display: flex; gap: 6px; margin-bottom: 12px;">
+                        <div style="width: 10px; height: 10px; border-radius: 50%; background: #ff5f56;"></div>
+                        <div style="width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e;"></div>
+                        <div style="width: 10px; height: 10px; border-radius: 50%; background: #27c93f;"></div>
+                    </div>
+                    <div>
+                        <span class="code-line"><span class="code-comment">// Antigravity Agent: Family Project Setup</span></span>
+                        <span class="code-line"><span class="code-keyword">const</span> plan = <span class="code-func">getFamilyPlan</span>(<span class="code-string">"AI_Pro_2026"</span>);</span>
+                        <span class="code-line"><span class="code-keyword">const</span> members = plan.members.<span class="code-func">map</span>(m => m.grantAccess([</span>
+                        <span class="code-line">&nbsp;&nbsp;<span class="code-string">"Gemini_3_Pro"</span>,</span>
+                        <span class="code-line">&nbsp;&nbsp;<span class="code-string">"FItbit_Premium"</span>, <span class="code-comment">// New Perk!</span></span>
+                        <span class="code-line">&nbsp;&nbsp;<span class="code-string">"Google_Home_Prem"</span></span>
+                        <span class="code-line">]));</span>
+                        <span class="code-line"><span class="code-func">deploy_to_cloud</span>(members); <span class="code-comment">// Success!</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRID 3: LIFESTYLE & HOME (NEW) -->
+        <h2 style="font-family: 'Google Sans'; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;" id="lifestyle">
+            <i data-lucide="home" color="var(--g-green)"></i> Hogar & Estilo de Vida
+        </h2>
+        <div class="benefits-grid">
+            
+            <!-- Fitbit -->
+            <div class="feature-card card-green">
+                <span class="family-pill">Salud</span>
+                <div class="icon-box" style="color: var(--g-green);">
+                    <i data-lucide="activity"></i>
+                </div>
+                <h3>Fitbit Premium</h3>
+                <p>Incluido para todos los miembros elegibles. Análisis de preparación diaria, perfiles de sueño avanzados y rutinas de ejercicio guiadas por IA.</p>
+            </div>
+
+            <!-- Nest / Google Home -->
+            <div class="feature-card card-yellow">
+                <span class="family-pill">Seguridad</span>
+                <div class="icon-box" style="color: var(--g-yellow);">
+                    <i data-lucide="shield-check"></i>
+                </div>
+                <h3>Google Home Premium</h3>
+                <p>Anteriormente Nest Aware. Historial de video de eventos de 30 días para tus cámaras y timbres Nest. Detección de rostros familiares impulsada por Gemini.</p>
+            </div>
+
+            <!-- Store Benefits -->
+            <div class="feature-card card-blue">
+                <span class="family-pill">Ahorro</span>
+                <div class="icon-box" style="color: var(--g-blue);">
+                    <i data-lucide="shopping-bag"></i>
+                </div>
+                <h3>10% en Google Store</h3>
+                <p>Reembolso en crédito de la tienda por compras de dispositivos Pixel, Nest o accesorios. Ideal para actualizar el hardware de la familia.</p>
+            </div>
+        </div>
+
+        <!-- FOOTER / REFERENCES -->
+        <footer class="footer-info">
+            <div class="footer-col">
+                <h4>Fuentes & Referencias 2026</h4>
+                <a href="#" class="source-link">1. Google One Blog: "Presentando Gemini 3 Pro para familias"</a>
+                <a href="#" class="source-link">2. DeepMind Research: "Nano Banana Pro Technical Report"</a>
+                <a href="#" class="source-link">3. Android Authority: "Google AI Pro Subscription Breakdown 2026"</a>
+                <a href="#" class="source-link">4. Google Store: "Nuevos beneficios de Google Home Premium y Fitbit"</a>
+            </div>
+            <div class="footer-col">
+                <h4>Requisitos</h4>
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    • Se requiere una cuenta de Google activa.<br>
+                    • El administrador del plan familiar debe residir en el mismo país que los miembros.<br>
+                    • Funciones de IA generativa y Fitbit Premium pueden tener restricciones de edad (18+).
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particle-canvas"></canvas>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Smooth scroll for nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Active state update
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        /**
+         * ANTIGRAVITY PARTICLE SWARM
+         * A swarm of particles that orbit the mouse cursor.
+         */
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        // Google / Antigravity Palette
+        const colors = ['#4285F4', '#EA4335', '#FBBC04', '#34A853', '#8AB4F8', '#F28B82'];
+
+        // Mouse state
+        const mouse = { x: -1000, y: -1000 };
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 1; // Base drift velocity
+                this.vy = (Math.random() - 0.5) * 1;
+                this.size = Math.random() * 2 + 1; // Small dots
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Physics properties
+                this.friction = 0.96;
+                this.ease = 0.05;
+            }
+
+            update() {
+                // Calculate distance to mouse
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                // "Antigravity" Attraction
+                // Particles accelerate towards mouse if within range, but maintain momentum
+                if (dist < 500) {
+                    const force = 1000 / (dist * dist + 100); // Inverse square-ish law
+                    const angle = Math.atan2(dy, dx);
+                    
+                    this.vx += Math.cos(angle) * force;
+                    this.vy += Math.sin(angle) * force;
+                }
+
+                // Apply velocity
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Friction (air resistance)
+                this.vx *= this.friction;
+                this.vy *= this.friction;
+
+                // Continuous drift (brownian motion) to keep them alive
+                this.vx += (Math.random() - 0.5) * 0.1;
+                this.vy += (Math.random() - 0.5) * 0.1;
+
+                // Screen wrapping
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.fillStyle = this.color;
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            
+            particles = [];
+            // Create particles based on screen size
+            const particleCount = Math.floor((width * height) / 10000); 
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Event Listeners
+        window.addEventListener('resize', init);
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        // Start
+        init();
+        animate();
+
+    </script>
+</body>
+</html>
