@@ -386,6 +386,37 @@
             pointer-events: none;
         }
 
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            header { padding: 80px 0 40px; }
+            h1 { font-size: 2.5rem; }
+            
+            /* Bottom Nav for Mobile */
+            .floating-nav {
+                top: auto;
+                bottom: 20px;
+                width: 90%;
+                max-width: 400px;
+                justify-content: space-around;
+                padding: 12px 20px;
+                background: rgba(22, 23, 26, 0.95);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+            .nav-item { font-size: 0.8rem; }
+            
+            .pricing-header { flex-direction: column; text-align: center; }
+            .price-tag { justify-content: center; }
+            
+            .cost-breakdown {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-info {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+
         /* Floating Nav for "Google" feel */
         .floating-nav {
             position: fixed;
@@ -452,8 +483,9 @@
                 <div class="icon-box" style="color: var(--g-blue);">
                     <i data-lucide="brain-circuit"></i>
                 </div>
-                <h3>Gemini 3 Pro</h3>
-                <p>El modelo más capaz de Google. Cada miembro de la familia tiene su propia instancia privada con capacidad de <strong>2 Milliones de tokens</strong>. Perfecto para analizar documentos largos o chatear con complejidad nativa.</p>
+                <h3>Gemini 3 Pro + NotebookLM</h3>
+                <p>El modelo más capaz de Google y tu herramienta de investigación definitiva.<br><br>
+                <strong style="color: var(--g-blue);">¿Para qué te sirve?</strong> Es tu asistente "sabelotodo". Tómale una foto a tu tarea de matemáticas y te explica cómo resolverla. Además, sube 50 PDFs largos a <strong>NotebookLM</strong> y te hace un podcast explicándolos o un resumen perfecto.</p>
                 <div style="font-size: 0.8rem; color: var(--g-blue); margin-top: auto;">
                     <i data-lucide="check" size="12"></i> Incluye Deep Research
                 </div>
@@ -465,8 +497,9 @@
                 <div class="icon-box" style="color: var(--g-green);">
                     <i data-lucide="file-text"></i>
                 </div>
-                <h3>Gemini en Workspace</h3>
-                <p>Integración total en Docs, Gmail, Slides y Sheets. Tu pareja puede usarlo para hojas de cálculo de presupuestos, y tus hijos para esquematizar ensayos escolares directamente en Docs.</p>
+                <h3>Gemini en Workspace + Citas</h3>
+                <p>Integración total en Docs, Gmail, Slides y Sheets.<br><br>
+                <strong style="color: var(--g-green);">Tu secretario personal:</strong> ¿Te da flojera escribir correos? Solo dile "Escribe un mail pidiendo vacaciones" y lo redacta. Además, crea una página de <strong>Reservas de Citas</strong> para que otros agenden reuniones contigo automáticamente, ideal para tutorías o clientes.</p>
                 <div style="font-size: 0.8rem; color: var(--g-green); margin-top: auto;">
                     <i data-lucide="check" size="12"></i> "Help me write" en Gmail
                 </div>
@@ -479,7 +512,8 @@
                     <i data-lucide="hard-drive"></i>
                 </div>
                 <h3>2 TB de Almacenamiento</h3>
-                <p>Espacio masivo en la nube compartido entre todos. No te preocupes por la privacidad: los archivos de Photos y Drive son <strong>invisibles</strong> para otros miembros a menos que se compartan explícitamente.</p>
+                <p>Espacio masivo en la nube compartido entre todos (privacidad individual garantizada).<br><br>
+                <strong style="color: var(--g-yellow);">Adiós al "Espacio Lleno":</strong> Respalda TODAS las fotos y videos de tus viajes en calidad original sin borrar nada nunca más.</p>
             </div>
         </div>
 
@@ -497,7 +531,8 @@
                     <i data-lucide="clapperboard"></i>
                 </div>
                 <h3>Flow & Veo 3</h3>
-                <p>El estudio de cine en casa. Usa <strong>Flow</strong> para la edición de video asistida por IA y <strong>Veo 3</strong> para generar clips 4K desde texto.</p>
+                <p>El estudio de cine en casa. Usa <strong>Flow</strong> para edición y <strong>Veo 3</strong> para generar clips 4K.<br><br>
+                <strong style="color: var(--g-red);">Cineasta automático:</strong> Convierte los videos movidos de las vacaciones en películas editadas con música y efectos automáticamente.</p>
                 <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0;">
                     <li><strong>Whisk:</strong> Transforma fotos en videos vivos.</li>
                     <li><strong>200 Créditos Mensuales:</strong> Para generación de video de alta fidelidad.</li>
@@ -509,8 +544,9 @@
                 <div class="icon-box" style="color: var(--g-red);">
                     <i data-lucide="image"></i>
                 </div>
-                <h3>Nano Banana Pro</h3>
-                <p>Generación de imágenes fotorrealistas con simulación de física de luz. Ideal para proyectos escolares, presentaciones o arte digital.</p>
+                <h3>Nano Banana Pro + Magic Editor</h3>
+                <p>Generación de imágenes fotorrealistas con simulación de física de luz y edición profesional en Photos.<br><br>
+                <strong style="color: var(--g-red);">Diseñador al instante:</strong> ¿Necesitas una imagen para una presentación? Descríbela y créala en segundos. ¿Una foto salió mal? Usa el <strong>Editor Mágico</strong> para mover personas, borrar ex-novios o cambiar el cielo de gris a azul.</p>
                 <div style="font-size: 0.8rem; color: var(--g-red); margin-top: auto;">
                     <i data-lucide="check" size="12"></i> Editor Mágico Ilimitado en Photos
                 </div>
@@ -522,8 +558,10 @@
                     <div>
                         <span class="antigravity-code-badge">PLAN AI PRO EXCLUSIVE</span>
                         <h3 style="margin-top: 15px; color: #8AB4F8;">Google Antigravity IDE</h3>
-                        <p>Entorno de desarrollo agéntico completo. Ideal para estudiantes de CS o hobbyists en la familia.</p>
-                        <p style="font-size: 0.9rem; color: #8b949e;">Cada miembro obtiene su propia cuota de agentes autónomos para construir, depurar y desplegar software.</p>
+                        <p>Entorno de desarrollo agéntico completo. Ideal para estudiantes de CS o hobbyists.</p>
+                        <p style="font-size: 0.9rem; color: #8b949e; margin-top: 10px;">
+                            <strong style="color: #8AB4F8;">Programación fácil:</strong> Si tienes una idea de App o Web, este sistema escribe el código por ti. Es como tener a un experto sentado a tu lado explicándote todo paso a paso.
+                        </p>
                     </div>
                 </div>
 
@@ -561,7 +599,19 @@
                     <i data-lucide="activity"></i>
                 </div>
                 <h3>Fitbit Premium</h3>
-                <p>Incluido para todos los miembros elegibles. Análisis de preparación diaria, perfiles de sueño avanzados y rutinas de ejercicio guiadas por IA.</p>
+                <p>Incluido para todos. Análisis de preparación diaria y perfiles de sueño avanzados.<br><br>
+                <strong style="color: var(--g-green);">Tu Doctor del Sueño:</strong> Te dice cómo descansar mejor, qué animal eres durmiendo y si tu cuerpo necesita recuperarse hoy o está listo para entrenar.</p>
+            </div>
+
+            <!-- Meet (NEW) -->
+            <div class="feature-card card-blue">
+                <span class="family-pill">Comunicación</span>
+                <div class="icon-box" style="color: var(--g-blue);">
+                    <i data-lucide="video"></i>
+                </div>
+                <h3>Google Meet Premium</h3>
+                <p>Videollamadas de hasta 24 horas y grabación en Drive.<br><br>
+                <strong style="color: var(--g-blue);">Reuniones Profesionales:</strong> Cancela el ruido del perro ladrando con IA, mejora tu iluminación automáticamente y transcribe la reunión a texto para que no tomes notas.</p>
             </div>
 
             <!-- Nest / Google Home -->
@@ -571,7 +621,8 @@
                     <i data-lucide="shield-check"></i>
                 </div>
                 <h3>Google Home Premium</h3>
-                <p>Anteriormente Nest Aware. Historial de video de eventos de 30 días para tus cámaras y timbres Nest. Detección de rostros familiares impulsada por Gemini.</p>
+                <p>Historial de video de eventos de 30 días y detección de rostros por IA.<br><br>
+                <strong style="color: var(--g-yellow);">Seguridad Inteligente:</strong> La cámara no solo graba, te dice: "Hay una persona en la puerta". Revisa qué pasó en casa mientras no estabas.</p>
             </div>
 
             <!-- Store Benefits -->
@@ -581,7 +632,8 @@
                     <i data-lucide="shopping-bag"></i>
                 </div>
                 <h3>10% en Google Store</h3>
-                <p>Reembolso en crédito de la tienda por compras de dispositivos Pixel, Nest o accesorios. Ideal para actualizar el hardware de la familia.</p>
+                <p>Reembolso en crédito de la tienda por compras de dispositivos Pixel o Nest.<br><br>
+                <strong style="color: var(--g-blue);">Dinero de vuelta:</strong> Si alguien compra un cel nuevo, te regresan el 10% para comprar fundas o accesorios.</p>
             </div>
         </div>
 
@@ -613,16 +665,14 @@
 
              <div class="cost-breakdown">
                 <div class="breakdown-item">
-                    <span class="breakdown-label">Costo Mensual (Total)</span>
+                    <span class="breakdown-label">Costo Mensual Total</span>
                     <span class="breakdown-value">39 MXN</span>
+                    <span style="font-size: 0.8rem; color: var(--g-yellow);">(Cubierto por Admin)</span>
                 </div>
-                <div class="breakdown-item highlight">
-                    <span class="breakdown-label">Costo por Familiar (4 Personas)</span>
-                    <span class="breakdown-value" style="color: var(--g-green); font-size: 1.2rem;">9.75 MXN/mes</span>
-                </div>
-                <div class="breakdown-item">
-                    <span class="breakdown-label">Costo por Familiar (6 Personas)</span>
-                    <span class="breakdown-value">6.50 MXN/mes</span>
+                <div class="breakdown-item highlight" style="background: rgba(129, 201, 149, 0.2); border-color: var(--g-green);">
+                    <span class="breakdown-label">Costo para TI (3 Meses)</span>
+                    <span class="breakdown-value" style="color: var(--g-green); font-size: 1.5rem;">$0.00 MXN</span>
+                    <span style="font-size: 0.8rem; color: #fff;">¡Nosotros invitamos! 🎉</span>
                 </div>
              </div>
 
@@ -640,6 +690,10 @@
                     <div class="breakdown-item">
                         <span class="breakdown-label">Por Familiar (4 Personas)</span>
                         <span class="breakdown-value" style="font-size: 1.1rem;">98.75 MXN</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <span class="breakdown-label">Por Familiar (5 Personas)</span>
+                        <span class="breakdown-value" style="font-size: 1.1rem;">79.00 MXN</span>
                     </div>
                     <div class="breakdown-item">
                         <span class="breakdown-label">Por Familiar (6 Personas)</span>
